@@ -53,6 +53,10 @@ public class Note {
         return priority;
     }
 
+    public String getStringPriority() {
+        return String.valueOf(priority);
+    }
+
     public void setPriority(int priority) {
         this.priority = priority;
     }

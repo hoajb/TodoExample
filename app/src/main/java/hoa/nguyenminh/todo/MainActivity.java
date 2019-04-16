@@ -20,12 +20,13 @@ import androidx.lifecycle.ViewModelProviders;
 import androidx.recyclerview.widget.ItemTouchHelper;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+import hoa.nguyenminh.todo.binding.DataBindingNoteAdapter;
 
 public class MainActivity extends AppCompatActivity {
     public static final int REQUEST_ADD_NOTE = 500;
     public static final int REQUEST_EDIT_NOTE = 501;
     private NoteViewModel mNoteViewModel;
-    private NoteAdapter mNoteAdapter;
+    private DataBindingNoteAdapter mNoteAdapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -35,7 +36,7 @@ public class MainActivity extends AppCompatActivity {
         RecyclerView recyclerView = findViewById(R.id.recyclerView);
         recyclerView.setLayoutManager(new LinearLayoutManager(recyclerView.getContext(), RecyclerView.VERTICAL, false));
         recyclerView.setHasFixedSize(true);
-        mNoteAdapter = new NoteAdapter();
+        mNoteAdapter = new DataBindingNoteAdapter();
         recyclerView.setAdapter(mNoteAdapter);
         mNoteViewModel = ViewModelProviders.of(this).get(NoteViewModel.class);
         mNoteViewModel.getAllNotes().observe(this, new Observer<List<Note>>() {
@@ -47,7 +48,7 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-        mNoteAdapter.setOnItemClickListener(new NoteAdapter.OnItemClickListener() {
+        mNoteAdapter.setOnItemClickListener(new DataBindingNoteAdapter.OnItemClickListener() {
             @Override
             public void onItemClick(Note note) {
                 Intent intent = new Intent(MainActivity.this, AddNoteEditActivity.class);
